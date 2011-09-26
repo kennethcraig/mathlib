@@ -17,8 +17,9 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include "vector2.h"
 #include <math.h>
+
+#include "vector2.h"
 
 Vector2 Vector2::X = Vector2( 1.0, 0.0 );
 Vector2 Vector2::Y = Vector2( 0.0, 1.0 );
@@ -55,8 +56,9 @@ double Vector2::y() const
 
 void Vector2::normalise()
 {
-	m_x /= length();
-	m_y /= length();
+	double len = length();
+	m_x /= len;
+	m_y /= len;
 }
 
 Vector2 Vector2::getNormalised() const
@@ -131,10 +133,12 @@ bool Vector2::operator== ( const Vector2& rhs ) const
 
 bool Vector2::operator!= ( const Vector2& rhs ) const
 {
-	return m_x != rhs.m_x && m_y != rhs.m_y;
+	return m_x != rhs.m_x || m_y != rhs.m_y;
 }
 
 Vector2& Vector2::operator= ( const Vector2& rhs )
 {
-	return *this = rhs;
+	m_x = rhs.m_x;
+	m_y = rhs.m_y;
+	return *this;
 }

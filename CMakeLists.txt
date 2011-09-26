@@ -21,16 +21,27 @@ PROJECT(${PROJECT})
 
 cmake_minimum_required( VERSION 2.8 )
 
+ADD_DEFINITIONS( -g )
+
 SET ( 	HEADERS
 
 	src/vector2.h
+	src/vector3.h
+
 )
 
 SET ( 	SOURCES
 
 	src/vector2.cpp
+	src/vector3.cpp
+	unittest/main.cpp
 	
 	${HEADERS}
+)
+
+INCLUDE_DIRECTORIES(
+	.
+	src
 )
 
 ADD_EXECUTABLE ( ${PROJECT}
