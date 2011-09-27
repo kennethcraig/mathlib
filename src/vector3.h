@@ -42,6 +42,7 @@ public:
 	
 	const Vector3 operator+ ( const Vector3& rhs ) const;
 	const Vector3 operator- ( const Vector3& rhs ) const;
+	const Vector3 operator- () const;
 	const Vector3 operator* ( const Vector3& rhs ) const;
 	const Vector3 operator* ( double rhs ) const;
 	

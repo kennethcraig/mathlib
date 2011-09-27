@@ -107,6 +107,11 @@ const Vector3 Vector3::operator- ( const Vector3& rhs ) const
 	return Vector3( m_x - rhs.m_x, m_y - rhs.m_y, m_z - rhs.m_z );
 }
 
+const Vector3 Vector3::operator- () const
+{
+	return Vector3( 0 - m_x, 0 - m_y, 0 - m_z );
+}
+
 const Vector3 Vector3::operator* ( const Vector3& rhs ) const
 {
 	return Vector3( m_x * rhs.m_x, m_y * rhs.m_y, m_z * rhs.m_z );
