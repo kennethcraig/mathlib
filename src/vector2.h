@@ -20,6 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef _VECTOR2_H_
 #define _VECTOR2_H_
 
+#include <iostream>
+
 class Vector2
 {
 public:
@@ -40,8 +42,10 @@ public:
 	
 	const Vector2 operator+ ( const Vector2& rhs ) const;
 	const Vector2 operator- ( const Vector2& rhs ) const;
+	const Vector2 operator- () const;
 	const Vector2 operator* ( const Vector2& rhs ) const;
 	const Vector2 operator* ( double rhs ) const;
+	friend const Vector2 operator* ( double lhs, const Vector2& rhs );
 	
 	Vector2& operator+= ( const Vector2& rhs );
 	Vector2& operator-= ( const Vector2& rhs );
@@ -53,6 +57,7 @@ public:
 	
 	Vector2& operator= ( const Vector2& rhs );
 	
+	friend std::ostream& operator<< ( std::ostream& os, const Vector2& rhs );
 private:
 	static Vector2 X;
 	static Vector2 Y;

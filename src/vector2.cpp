@@ -88,6 +88,11 @@ const Vector2 Vector2::operator- ( const Vector2& rhs ) const
 	return Vector2( m_x - rhs.m_x, m_y - rhs.m_y );
 }
 
+const Vector2 Vector2::operator- () const
+{
+	return Vector2( 0 - m_x, 0 - m_y );
+}
+
 const Vector2 Vector2::operator* ( const Vector2& rhs ) const
 {
 	return Vector2( m_x * rhs.m_x, m_y * rhs.m_y );
@@ -111,6 +116,7 @@ Vector2& Vector2::operator-= ( const Vector2& rhs )
 	m_y -= rhs.m_y;
 	return *this;
 }
+
 
 Vector2& Vector2::operator*= ( const Vector2& rhs )
 {
@@ -141,4 +147,14 @@ Vector2& Vector2::operator= ( const Vector2& rhs )
 	m_x = rhs.m_x;
 	m_y = rhs.m_y;
 	return *this;
+}
+
+const Vector2 operator* ( double lhs, const Vector2& rhs )
+{
+	return rhs * lhs;
+}
+
+std::ostream& operator<< ( std::ostream& os, const Vector2& rhs )
+{
+	return os << "{" << rhs.m_x << "," << rhs.m_y << "}";
 }

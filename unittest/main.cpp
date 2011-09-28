@@ -35,8 +35,92 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 	}
 	
 
-int main()
+int testVector2()
 {
+	std::cout << "Testing Vector2" << std::endl;
+
+	// empty constructor, and implicitly, ==
+	TEST( Vector2(), Vector2(0,0) );
+	
+	// constructor, and implicitly, operator==
+	TEST( Vector2(1,2), Vector2(1,2) );
+	
+	// Accessors
+	TEST( Vector2(1,2).x(), 1 );
+	TEST( Vector2(1,2).y(), 2 );
+	
+	// Assignment
+	Vector2 a(1,2);
+	Vector2 b = a;
+	TEST( b, a );
+	
+	// Normalise
+	Vector2 test(2,0);
+	test.normalise();
+	TEST( test, Vector2(1,0) );
+	
+	test = Vector2(0,2);
+	test.normalise();
+	TEST( test, Vector2(0,1) );
+	
+	// dot
+	TEST( Vector2(1,0).dot( Vector2(0,1) ), 0 );
+	TEST( Vector2(-1,0).dot( Vector2(-1,0) ), 1 );
+	
+	TEST( Vector2(1,0).dot( Vector2(0,1) ), 0 );
+	TEST( Vector2(1,0).dot( Vector2(-1,0) ), -1 );
+	
+	TEST( Vector2(0,1).dot( Vector2(0,0) ), 0 );
+	TEST( Vector2(0,1).dot( Vector2(0,-1) ), -1 );
+
+	// length
+	TEST(Vector2( 1,0).length(), 1 );
+	TEST(Vector2( 0,1).length(), 1 );
+	
+	TEST( Vector2(1,1).length(), sqrt(2) );
+	
+	
+	// operators
+	TEST( Vector2( 1,2 ) + Vector2( 1,2), Vector2( 2,4 ) );
+	TEST( Vector2( -1,-2 ) + Vector2( 1,2), Vector2( 0,0) );
+	
+	TEST( Vector2( 1,2 ) - Vector2( 1,2), Vector2( 0,0 ) );
+	TEST( Vector2( -1,-2 ) - Vector2( 1,2), Vector2( -2,-4 ) );
+	
+	// Operator -()
+	TEST( -Vector2( 1,2 ), Vector2( -1, -2 ) );
+	
+	TEST( Vector2(1,2) * 2, Vector2(2,4) );	
+	
+	TEST( Vector2(2,2) * Vector2(2,2), Vector2(4,4 ));
+	TEST( Vector2(1,2) * Vector2(1,2), Vector2(1,4 ));
+	
+	
+	test = Vector2(1,2);
+	test += Vector2( 1,2);
+	TEST( test, Vector2(2,4) );
+	
+	test -= Vector2(1,2);
+	TEST( test, Vector2(1,2) );
+	
+	test *= Vector2(1,2);
+	TEST( test, Vector2(1,4) );
+	
+	test *= 2;
+	TEST( test, Vector2(2,8) );
+	
+	TEST(  2 * Vector2(1,1), Vector2(2,2) );
+	
+	TEST(Vector2(1,2) != Vector2(0,2), true );
+	TEST(Vector2(1,2) != Vector2(1,0), true );
+
+	return 0;
+}
+
+int testVector3()
+{
+	std::cout << "Testing Vector3" << std::endl;
+
 	// empty constructor, and implicitly, ==
 	TEST( Vector3(), Vector3(0,0,0) );
 	
@@ -104,7 +188,7 @@ int main()
 	TEST( Vector3( 1,2,3 ) - Vector3( 1,2,3), Vector3( 0,0,0 ) );
 	TEST( Vector3( -1,-2,-3 ) - Vector3( 1,2,3), Vector3( -2,-4,-6 ) );
 	
-	// TODO Operator -()
+	// Operator -()
 	TEST( -Vector3( 1,2,3 ), Vector3( -1, -2, -3 ) );
 	
 	TEST( Vector3(1,1,1) * 2, Vector3(2,2,2) );	
@@ -132,7 +216,21 @@ int main()
 	TEST(Vector3(1,2,3) != Vector3(1,0,3), true );
 	TEST(Vector3(1,2,3) != Vector3(1,2,0), true );
 
-	
-
 	return 0;
 }
+
+int main()
+{
+	if( testVector2() != 0 )
+	{
+		return 1;
+	}
+	
+	if( testVector3() != 0 )
+	{
+		return 1;
+	}
+	
+	return 0;
+}
+
