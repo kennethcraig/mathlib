@@ -17,11 +17,37 @@
 
 CMAKE_MINIMUM_REQUIRED( VERSION 2.8 )
 
-SET(PROJECT mathlib)
+SET(PROJECT mathlib-engine)
 
-PROJECT(${PROJECT})
+INCLUDE( ${CMAKE_SOURCE_DIR}/support/common.cmake )
 
-ADD_SUBDIRECTORY(core)
-ADD_SUBDIRECTORY(unittest)
-ADD_SUBDIRECTORY(engine)
+SET( QTHEADERS
+	rendererwidget.h
+)
 
+QT4_WRAP_CPP( QTSOURCES ${QTHEADERS} )
+
+SET ( 	HEADERS
+	
+)
+
+SET ( 	SOURCES
+	rendererwidget.cpp
+	main.cpp
+	${QTSOURCES}
+)
+
+ADD_EXECUTABLE ( 
+	${PROJECT}
+	${SOURCES}
+	${HEADERS}
+)
+
+TARGET_LINK_LIBRARIES (
+	${PROJECT}
+	mathlib-core
+	${QT_QTCORE_LIBRARY}
+	${QT_QTGUI_LIBRARY}
+	${QT_QTOPENGL_LIBRARY}
+	${QT_QTMAIN_LIBRARY}
+)

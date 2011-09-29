@@ -17,11 +17,25 @@
 
 CMAKE_MINIMUM_REQUIRED( VERSION 2.8 )
 
-SET(PROJECT mathlib)
+SET(PROJECT mathlib-unittest)
 
-PROJECT(${PROJECT})
+INCLUDE( ${CMAKE_SOURCE_DIR}/support/common.cmake )
 
-ADD_SUBDIRECTORY(core)
-ADD_SUBDIRECTORY(unittest)
-ADD_SUBDIRECTORY(engine)
+SET ( 	HEADERS
+	
+)
 
+SET ( 	SOURCES
+	main.cpp	
+)
+
+ADD_EXECUTABLE ( 
+	${PROJECT}
+	${SOURCES}
+	${HEADERS}
+)
+
+TARGET_LINK_LIBRARIES (
+	${PROJECT}
+	mathlib-core
+)
